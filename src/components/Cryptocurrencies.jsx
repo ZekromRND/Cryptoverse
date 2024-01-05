@@ -33,7 +33,7 @@ const Cryptocurrencies = ({ simplified }) => {
         </div>
       )}
 
-{/*       <Row gutter={[32,32]} className="crypto-card-contianer" >
+      <Row gutter={[32,32]} className="crypto-card-contianer" >
           {cryptos.map((currency) => (
             <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.rank}>
               <Link to={`/crypto/${currency.uuid}`}>
@@ -49,7 +49,7 @@ const Cryptocurrencies = ({ simplified }) => {
               </Link>
             </Col>
           ))}
-      </Row> */}
+      </Row>
     </>
   )
 }
