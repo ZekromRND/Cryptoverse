@@ -1,0 +1,3 @@
+[submodule "cryptoverse"]
+	path = cryptoverse
+	url = https://github.com/ZekromRND/cryptoverse.git
