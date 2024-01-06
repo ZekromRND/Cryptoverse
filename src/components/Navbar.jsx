@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Typography, Menu, Avatar } from 'antd'
+import { Typography, Menu, Avatar } from 'antd'
 import { Link } from 'react-router-dom'
-import { HomeOutlined, MoneyCollectOutlined, BulbOutlined, FundOutlined, MenuOutlined } from '@ant-design/icons'
+import { HomeOutlined, FundOutlined } from '@ant-design/icons'
 import icon from '../images/cryptocurrency.png'
 
 const Navbar = () => {
