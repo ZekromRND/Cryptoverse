@@ -9,7 +9,7 @@ import { useGetCryptosQuery } from '../services/cryptoApi'
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100
-  const {data: cryptosList, isFetching } = useGetCryptosQuery(count);
+  const {data: cryptosList, isLoading } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins)
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -20,38 +20,40 @@ const Cryptocurrencies = ({ simplified }) => {
     setCryptos(filteredData)
   }, [cryptosList,searchTerm] )
 
-  if (isFetching) return <Loader />;
+  if (isLoading) 
+    return <Loader />
 
-  return (
-    <>
-      {!simplified && (
-        <div className="search-crypto">
-          <Input
-            placeholder="Search Cryptocurrency"
-            onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
-          />
-        </div>
-      )}
+    return (
+      <>
+        {!simplified && (
+          <div className="search-crypto">
+            <Input
+              placeholder="Search Cryptocurrency"
+              onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+            />
+          </div>
+        )}
 
-      <Row gutter={[32,32]} className="crypto-card-contianer" >
-          {cryptos.map((currency) => (
-            <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.rank}>
-              <Link to={`/crypto/${currency.uuid}`}>
-                <Card
-                  title={`${currency.rank}. ${currency.name}`}
-                  extra={<img className='crypto-image' alt="" src={currency.iconUrl}/>}
-                  hoverable
-                >
-                  <p>Price: {milify(currency.price)} </p>
-                  <p>Market Cap:{milify(currency.marketCap)}</p>
-                  <p>Change:{milify(currency.change)}</p>
-                </Card>
-              </Link>
-            </Col>
-          ))}
-      </Row>
-    </>
-  )
-}
+        
+        <Row gutter={[32,32]} className="crypto-card-contianer" >
+            {cryptos && cryptos.map((currency) => (
+              <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.rank}>
+                <Link to={`/crypto/${currency.uuid}`}>
+                  <Card
+                    title={`${currency.rank}. ${currency.name}`}
+                    extra={<img className='crypto-image' alt="" src={currency.iconUrl}/>}
+                    hoverable
+                  >
+                    <p>Price: {milify(currency.price)} </p>
+                    <p>Market Cap:{milify(currency.marketCap)}</p>
+                    <p>Change:{milify(currency.change)}</p>
+                  </Card>
+                </Link>
+              </Col>
+            ))}
+        </Row>
+      </>
+    )
+  }
 
 export default Cryptocurrencies
